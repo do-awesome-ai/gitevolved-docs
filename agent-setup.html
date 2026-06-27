@@ -1,0 +1,61 @@
+<!doctype html>
+<!-- gitevolved docs — agent-setup. Static, hand-rolled, moat-safe. -->
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI-agent setup — gitevolved docs</title>
+<meta name="description" content="Let Claude Code, Codex, Gemini, or any coding agent install and use gitevolved for you.">
+<link rel="stylesheet" href="style.css">
+</head><body>
+<div class="top"><div class="row">
+  <a class="brand" href="index.html"><span class="dot"></span> <b>gitevolved</b> <span style="color:var(--dim);font-weight:400">docs</span></a>
+  <div class="links"><a href="https://gitevolved.ai">gitevolved.ai</a><a href="https://github.com/do-awesome-ai/gitevolved">GitHub ↗</a></div>
+</div></div>
+<div class="shell">
+  <aside><div class="grp">Start</div>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<div class="grp">Concepts</div>
+<a href="how-it-works.html">How it works</a>
+<a href="use-cases.html">Use cases</a>
+<div class="grp">Guides</div>
+<a href="agent-setup.html" class="cur">AI-agent setup</a>
+<a href="cli-reference.html">CLI reference</a>
+<a href="faq.html">FAQ & troubleshooting</a></aside>
+  <main>
+    <h1>AI-agent setup</h1>
+    <p class="tagline">Let Claude Code, Codex, Gemini, or any coding agent install and use gitevolved for you.</p>
+    
+<p>gitevolved is built for the AI-agent era, so the easiest install is to let your
+agent do it. Every agent reads the repo's
+<a href="https://github.com/do-awesome-ai/gitevolved/blob/main/AGENTS.md">AGENTS.md</a>,
+which is a deterministic recipe.</p>
+
+<h2>The universal prompt</h2>
+<pre><code>Install gitevolved from github.com/do-awesome-ai/gitevolved,
+then make sure `git clone dosource://cloud/&lt;repo&gt;` works.</code></pre>
+<p>Works with Claude Code, Codex, Gemini CLI, Aider, Cursor, and any agent that can
+run shell commands. The agent checks for Go, runs <code>go install</code> (or
+downloads the prebuilt binary if Go is absent), puts the tools on your PATH, and
+verifies.</p>
+
+<h2>If you want to be explicit</h2>
+<pre><code>Run these and confirm `git-remote-dosource --version` prints a version:
+  go install github.com/do-awesome-ai/gitevolved/cmd/git-remote-dosource@latest
+  go install github.com/do-awesome-ai/gitevolved/cmd/gitevolved@latest
+  go install github.com/do-awesome-ai/gitevolved/cmd/dosourced@latest
+Ensure $(go env GOPATH)/bin is on my PATH. Do not rename git-remote-dosource.</code></pre>
+
+<h2>Giving the agent cloud access</h2>
+<p>For <code>dosource://cloud/...</code> repos the agent needs your doSource API
+key. Give it the key to set <code>DOSOURCE_API_KEY</code>; never ask it to invent
+one. Local-only usage needs no key.</p>
+
+<div class="note">There is also an <code>llms.txt</code> at the repo root — a short,
+machine-readable summary an agent can read to understand what gitevolved is and how
+to install it.</div>
+
+    <div class="next"><a href="use-cases.html">← Use cases</a><a href="cli-reference.html">CLI reference →</a></div>
+  </main>
+</div>
+<footer><div class="row"><span>gitevolved — git, evolved. Apache-2.0.</span><span><a href="https://github.com/do-awesome-ai/gitevolved">github</a> · <a href="https://gitevolved.ai">gitevolved.ai</a></span></div></footer>
+</body></html>

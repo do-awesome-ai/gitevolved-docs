@@ -1,0 +1,77 @@
+<!doctype html>
+<!-- gitevolved docs — getting-started. Static, hand-rolled, moat-safe. -->
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Getting started — gitevolved docs</title>
+<meta name="description" content="Install gitevolved and make your first clone and push. Two minutes, no cloud account needed to start.">
+<link rel="stylesheet" href="style.css">
+</head><body>
+<div class="top"><div class="row">
+  <a class="brand" href="index.html"><span class="dot"></span> <b>gitevolved</b> <span style="color:var(--dim);font-weight:400">docs</span></a>
+  <div class="links"><a href="https://gitevolved.ai">gitevolved.ai</a><a href="https://github.com/do-awesome-ai/gitevolved">GitHub ↗</a></div>
+</div></div>
+<div class="shell">
+  <aside><div class="grp">Start</div>
+<a href="index.html">Overview</a>
+<a href="getting-started.html" class="cur">Getting started</a>
+<div class="grp">Concepts</div>
+<a href="how-it-works.html">How it works</a>
+<a href="use-cases.html">Use cases</a>
+<div class="grp">Guides</div>
+<a href="agent-setup.html">AI-agent setup</a>
+<a href="cli-reference.html">CLI reference</a>
+<a href="faq.html">FAQ & troubleshooting</a></aside>
+  <main>
+    <h1>Getting started</h1>
+    <p class="tagline">Install gitevolved and make your first clone and push. Two minutes, no cloud account needed to start.</p>
+    
+<h2>1. Install</h2>
+<h3>Easiest: let your AI agent do it</h3>
+<p>Paste this to Claude Code, Codex, Gemini, or any coding agent:</p>
+<pre><code>Install gitevolved from github.com/do-awesome-ai/gitevolved,
+then make sure `git clone dosource://cloud/&lt;repo&gt;` works.</code></pre>
+<p>It reads the repo's <a href="https://github.com/do-awesome-ai/gitevolved/blob/main/AGENTS.md">AGENTS.md</a> and runs the steps. See <a href="agent-setup.html">AI-agent setup</a> for per-agent prompts.</p>
+
+<h3>With Go (one command per tool)</h3>
+<pre><code>go install github.com/do-awesome-ai/gitevolved/cmd/git-remote-dosource@latest
+go install github.com/do-awesome-ai/gitevolved/cmd/gitevolved@latest
+go install github.com/do-awesome-ai/gitevolved/cmd/dosourced@latest
+export PATH="$(go env GOPATH)/bin:$PATH"   # if not already on PATH</code></pre>
+
+<h3>No Go? Prebuilt binaries</h3>
+<p>Download the archive for your OS/arch from the
+<a href="https://github.com/do-awesome-ai/gitevolved/releases/latest">latest release</a>
+and put the three binaries on PATH. Or clone the repo and run <code>./install.sh</code>.</p>
+
+<div class="warn note"><b>Keep the name.</b> <code>git-remote-dosource</code> must stay
+exactly that filename on your PATH — git derives the remote-helper from the
+<code>dosource://</code> URL scheme. Don't rename it.</div>
+
+<h3>Verify</h3>
+<pre><code>git-remote-dosource --version</code></pre>
+
+<h2>2. Clone a hosted repo</h2>
+<p>For cloud repos you need a doSource API key (set it once):</p>
+<pre><code>export DOSOURCE_API_KEY="&lt;your key&gt;"
+git clone dosource://cloud/&lt;repo&gt; my-checkout</code></pre>
+<p>That's a normal git clone — you now have a real git working tree.</p>
+
+<h2>3. Edit and push</h2>
+<pre><code>cd my-checkout
+# ...edit files...
+git add -A &amp;&amp; git commit -m "my change"
+git push dosource://cloud/&lt;repo&gt;        # lands on the shared codebase
+git push origin main                     # your GitHub remote, untouched</code></pre>
+<p>If a teammate pushed a change to a different part of the same file meanwhile,
+both land — no conflict to resolve.</p>
+
+<h2>Fully local (no cloud)</h2>
+<p>You can use gitevolved entirely offline against a local operation log — see the
+<a href="cli-reference.html">CLI reference</a> for <code>gitevolved record</code>,
+<code>materialize</code>, and <code>export</code>.</p>
+
+    <div class="next"><a href="index.html">← Overview</a><a href="how-it-works.html">How it works →</a></div>
+  </main>
+</div>
+<footer><div class="row"><span>gitevolved — git, evolved. Apache-2.0.</span><span><a href="https://github.com/do-awesome-ai/gitevolved">github</a> · <a href="https://gitevolved.ai">gitevolved.ai</a></span></div></footer>
+</body></html>

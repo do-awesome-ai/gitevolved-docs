@@ -1,0 +1,63 @@
+<!doctype html>
+<!-- gitevolved docs — cli-reference. Static, hand-rolled, moat-safe. -->
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CLI reference — gitevolved docs</title>
+<meta name="description" content="The three binaries and the dosource:// URL forms.">
+<link rel="stylesheet" href="style.css">
+</head><body>
+<div class="top"><div class="row">
+  <a class="brand" href="index.html"><span class="dot"></span> <b>gitevolved</b> <span style="color:var(--dim);font-weight:400">docs</span></a>
+  <div class="links"><a href="https://gitevolved.ai">gitevolved.ai</a><a href="https://github.com/do-awesome-ai/gitevolved">GitHub ↗</a></div>
+</div></div>
+<div class="shell">
+  <aside><div class="grp">Start</div>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<div class="grp">Concepts</div>
+<a href="how-it-works.html">How it works</a>
+<a href="use-cases.html">Use cases</a>
+<div class="grp">Guides</div>
+<a href="agent-setup.html">AI-agent setup</a>
+<a href="cli-reference.html" class="cur">CLI reference</a>
+<a href="faq.html">FAQ & troubleshooting</a></aside>
+  <main>
+    <h1>CLI reference</h1>
+    <p class="tagline">The three binaries and the dosource:// URL forms.</p>
+    
+<h2>The dosource:// URL</h2>
+<table>
+<tr><th>Form</th><th>Means</th></tr>
+<tr><td><code>dosource://cloud/&lt;repo&gt;</code></td><td>A hosted repo in the doSource cloud (needs <code>DOSOURCE_API_KEY</code>).</td></tr>
+<tr><td><code>dosource://&lt;path-to-op-log&gt;</code></td><td>A local operation-log file — fully offline, no account.</td></tr>
+</table>
+<p>Use it anywhere you'd use a git remote: <code>git clone</code>, <code>git fetch</code>, <code>git push</code>.</p>
+
+<h2>git-remote-dosource</h2>
+<p>git's remote-helper for the <code>dosource://</code> scheme. You never call it
+directly — git invokes it when it sees a <code>dosource://</code> URL. It must be on
+PATH under exactly that name. <code>git-remote-dosource --version</code> prints the version.</p>
+
+<h2>gitevolved</h2>
+<p>The local engine CLI (operates on a local op-log; no cloud).</p>
+<table>
+<tr><th>Command</th><th>Does</th></tr>
+<tr><td><code>gitevolved record --log &lt;path&gt; &lt;file&gt;…</code></td><td>Record edits to files as typed operations.</td></tr>
+<tr><td><code>gitevolved rm --log &lt;path&gt; &lt;path&gt;…</code></td><td>Record a deletion.</td></tr>
+<tr><td><code>gitevolved materialize --log &lt;path&gt; [--out &lt;dir&gt;]</code></td><td>Project the op-log into files.</td></tr>
+<tr><td><code>gitevolved export --log &lt;path&gt; --git &lt;repo&gt;</code></td><td>Mint a real git commit from the op-log.</td></tr>
+<tr><td><code>gitevolved log --log &lt;path&gt;</code></td><td>Show the operation history.</td></tr>
+</table>
+
+<h2>dosourced</h2>
+<p>The auto-record daemon: watches a working tree and turns every save into an
+operation in the op-log, so you don't run <code>record</code> by hand.</p>
+<pre><code>dosourced --root . --log .dosource/ops.jsonl</code></pre>
+<p>Flags: <code>--root</code> (tree to watch), <code>--log</code> (op-log path),
+<code>--session</code> (identity stamped on operations), <code>--interval</code> (poll interval).</p>
+
+    <div class="next"><a href="agent-setup.html">← AI-agent setup</a><a href="faq.html">FAQ & troubleshooting →</a></div>
+  </main>
+</div>
+<footer><div class="row"><span>gitevolved — git, evolved. Apache-2.0.</span><span><a href="https://github.com/do-awesome-ai/gitevolved">github</a> · <a href="https://gitevolved.ai">gitevolved.ai</a></span></div></footer>
+</body></html>

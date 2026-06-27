@@ -1,0 +1,65 @@
+<!doctype html>
+<!-- gitevolved docs — how-it-works. Static, hand-rolled, moat-safe. -->
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How it works — gitevolved docs</title>
+<meta name="description" content="Why recording operations instead of text lines removes the conflicts that never needed to happen.">
+<link rel="stylesheet" href="style.css">
+</head><body>
+<div class="top"><div class="row">
+  <a class="brand" href="index.html"><span class="dot"></span> <b>gitevolved</b> <span style="color:var(--dim);font-weight:400">docs</span></a>
+  <div class="links"><a href="https://gitevolved.ai">gitevolved.ai</a><a href="https://github.com/do-awesome-ai/gitevolved">GitHub ↗</a></div>
+</div></div>
+<div class="shell">
+  <aside><div class="grp">Start</div>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<div class="grp">Concepts</div>
+<a href="how-it-works.html" class="cur">How it works</a>
+<a href="use-cases.html">Use cases</a>
+<div class="grp">Guides</div>
+<a href="agent-setup.html">AI-agent setup</a>
+<a href="cli-reference.html">CLI reference</a>
+<a href="faq.html">FAQ & troubleshooting</a></aside>
+  <main>
+    <h1>How it works</h1>
+    <p class="tagline">Why recording operations instead of text lines removes the conflicts that never needed to happen.</p>
+    
+<h2>An edit is an operation, not a diff</h2>
+<p>Plain git stores changes as text: which lines were added or removed. When it
+merges, it works line-by-line, so two edits near each other look like a collision
+even when they're unrelated.</p>
+<p>gitevolved records the <b>operation</b> you performed — <code>AddFunction</code>,
+<code>RenameSymbol</code>, <code>RewriteRegion</code>, and so on — in an append-only
+log. Your files are a <b>projection</b> of that log: gitevolved replays the
+operations to produce the current tree on demand.</p>
+
+<h2>Why that removes false conflicts</h2>
+<p>Because edits are structured operations, gitevolved can tell that "add a function
+at the bottom" and "rename a symbol at the top" are <b>independent</b> — two
+different operations on two different parts of the file. It combines them and both
+land. No conflict markers, no manual resolve step.</p>
+<div class="note"><b>What still needs a human:</b> when two operations genuinely
+change the <em>same</em> code, that's a real conflict and gitevolved asks you to
+decide. It only removes the conflicts that line-based diffing invented.</div>
+
+<h2>It's still git</h2>
+<p>gitevolved shells out to your real, installed <code>git</code> via the standard
+remote-helper mechanism — it never forks or links git internals. <code>dosource://</code>
+is just a git remote. <code>git clone</code>, <code>git fetch</code>, <code>git push</code>
+work like any remote, and <code>git push origin</code> to GitHub is completely
+unaffected. You can use both remotes side by side.</p>
+
+<h2>Local first, team optional</h2>
+<p>The engine — recording operations, projecting files, detecting conflicts,
+exporting to a normal git commit — runs entirely on your laptop, with no account.
+When a whole team (and their agents) work on one codebase, a hosted cloud keeps
+everyone in sync; from your side it's just <code>git push dosource://cloud/&lt;repo&gt;</code>
+and concurrent pushes stay consistent. You never have to think about how that
+coordination happens — you push, it lands.</p>
+
+    <div class="next"><a href="getting-started.html">← Getting started</a><a href="use-cases.html">Use cases →</a></div>
+  </main>
+</div>
+<footer><div class="row"><span>gitevolved — git, evolved. Apache-2.0.</span><span><a href="https://github.com/do-awesome-ai/gitevolved">github</a> · <a href="https://gitevolved.ai">gitevolved.ai</a></span></div></footer>
+</body></html>

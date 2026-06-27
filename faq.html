@@ -1,0 +1,72 @@
+<!doctype html>
+<!-- gitevolved docs — faq. Static, hand-rolled, moat-safe. -->
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAQ & troubleshooting — gitevolved docs</title>
+<meta name="description" content="Common questions, and the two things that trip people up.">
+<link rel="stylesheet" href="style.css">
+</head><body>
+<div class="top"><div class="row">
+  <a class="brand" href="index.html"><span class="dot"></span> <b>gitevolved</b> <span style="color:var(--dim);font-weight:400">docs</span></a>
+  <div class="links"><a href="https://gitevolved.ai">gitevolved.ai</a><a href="https://github.com/do-awesome-ai/gitevolved">GitHub ↗</a></div>
+</div></div>
+<div class="shell">
+  <aside><div class="grp">Start</div>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<div class="grp">Concepts</div>
+<a href="how-it-works.html">How it works</a>
+<a href="use-cases.html">Use cases</a>
+<div class="grp">Guides</div>
+<a href="agent-setup.html">AI-agent setup</a>
+<a href="cli-reference.html">CLI reference</a>
+<a href="faq.html" class="cur">FAQ & troubleshooting</a></aside>
+  <main>
+    <h1>FAQ & troubleshooting</h1>
+    <p class="tagline">Common questions, and the two things that trip people up.</p>
+    
+<h2>Is it still git?</h2>
+<p>Yes. gitevolved shells out to your real, installed <code>git</code> and adds a
+remote transport. Every git command you know works.</p>
+
+<h2>Does <code>git push origin</code> still work?</h2>
+<p>Completely unchanged. Your GitHub (or GitLab, Bitbucket) remote is untouched. You
+can push to <code>origin</code> and to <code>dosource://</code> side by side.</p>
+
+<h2>Does it replace GitHub?</h2>
+<p>No. Keep GitHub. gitevolved adds a smarter place to push to for parallel work; it
+doesn't take anything away.</p>
+
+<h2>Does it really never conflict?</h2>
+<p>No — and we won't pretend otherwise. Edits to <em>different</em> parts of a file
+merge automatically. Edits that genuinely change the <em>same</em> code still ask a
+human. gitevolved removes the false conflicts, not the real ones.</p>
+
+<h2>What needs the cloud?</h2>
+<p>Only <code>dosource://cloud/&lt;repo&gt;</code> (and a <code>DOSOURCE_API_KEY</code>).
+Everything else — recording operations, projecting files, exporting git commits,
+using a local op-log — runs offline with no account.</p>
+
+<h2>What languages does it understand?</h2>
+<p>Go has the deepest operation fidelity; TypeScript/JS, Swift, and others are
+supported, with a text-region fallback everywhere so it always works.</p>
+
+<h2>Troubleshooting</h2>
+<h3><code>git-remote-dosource: command not found</code> / clone fails on <code>dosource://</code></h3>
+<p>The binary isn't on PATH under its exact name. Confirm <code>git-remote-dosource --version</code>
+runs; if not, add your install dir (<code>$(go env GOPATH)/bin</code> or
+<code>~/.local/bin</code>) to PATH. Don't rename the binary — git derives the name
+from the URL scheme.</p>
+<h3>Cloud clone says unauthorized</h3>
+<p>Set <code>DOSOURCE_API_KEY</code> to a valid key (it's also read from a
+<code>.vscode/dosource.json</code> <code>apiKey</code> field if present).</p>
+
+<h2>License &amp; contributing</h2>
+<p>Apache-2.0. Contributions under the DCO — sign off commits with <code>git commit -s</code>.
+See <a href="https://github.com/do-awesome-ai/gitevolved/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
+
+    <div class="next"><a href="cli-reference.html">← CLI reference</a><span></span></div>
+  </main>
+</div>
+<footer><div class="row"><span>gitevolved — git, evolved. Apache-2.0.</span><span><a href="https://github.com/do-awesome-ai/gitevolved">github</a> · <a href="https://gitevolved.ai">gitevolved.ai</a></span></div></footer>
+</body></html>

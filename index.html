@@ -1,0 +1,56 @@
+<!doctype html>
+<!-- gitevolved docs — index. Static, hand-rolled, moat-safe. -->
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overview — gitevolved docs</title>
+<meta name="description" content="git that merges by what changed, not by text lines — so your team and your AI agents work on the same code at once without the conflicts that never needed to happen.">
+<link rel="stylesheet" href="style.css">
+</head><body>
+<div class="top"><div class="row">
+  <a class="brand" href="index.html"><span class="dot"></span> <b>gitevolved</b> <span style="color:var(--dim);font-weight:400">docs</span></a>
+  <div class="links"><a href="https://gitevolved.ai">gitevolved.ai</a><a href="https://github.com/do-awesome-ai/gitevolved">GitHub ↗</a></div>
+</div></div>
+<div class="shell">
+  <aside><div class="grp">Start</div>
+<a href="index.html" class="cur">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<div class="grp">Concepts</div>
+<a href="how-it-works.html">How it works</a>
+<a href="use-cases.html">Use cases</a>
+<div class="grp">Guides</div>
+<a href="agent-setup.html">AI-agent setup</a>
+<a href="cli-reference.html">CLI reference</a>
+<a href="faq.html">FAQ & troubleshooting</a></aside>
+  <main>
+    <h1>Overview</h1>
+    <p class="tagline">git that merges by what changed, not by text lines — so your team and your AI agents work on the same code at once without the conflicts that never needed to happen.</p>
+    
+<p><b>gitevolved</b> is a free, open-source upgrade to git. Git merges text
+line-by-line, so it flags a conflict whenever two edits land near each other —
+even when they don't actually clash. gitevolved instead records <b>what you did</b>
+(added a function, renamed a symbol, rewrote a block) as a structured operation, so
+edits to different parts of the same file combine cleanly and both land.</p>
+
+<div class="note"><b>Honest scope:</b> only edits that don't overlap the same code
+merge automatically. Edits that genuinely change the same code still ask a human —
+gitevolved just stops inventing the conflicts that never needed to happen.</div>
+
+<h2>The three things to know</h2>
+<ul>
+<li><b>It merges by operation, not by line</b> — non-overlapping edits to one file just combine.</li>
+<li><b>It's still git</b> — <code>git clone</code>, <code>git commit</code>, <code>git push</code> all work, and <code>git push origin</code> to GitHub is untouched. It shells out to your real, installed git; it never forks it.</li>
+<li><b>It's multiplayer</b> — many people and many AI agents edit one codebase at once and stay in sync. (The local client is free + offline; a paid hosted cloud keeps a team in sync.)</li>
+</ul>
+
+<h2>Where to go next</h2>
+<ul>
+<li><a href="getting-started.html">Getting started</a> — install and your first clone/push.</li>
+<li><a href="how-it-works.html">How it works</a> — operations vs. lines, and why that removes false conflicts.</li>
+<li><a href="agent-setup.html">AI-agent setup</a> — let Claude Code / Codex / Gemini install it for you.</li>
+</ul>
+
+    <div class="next"><span></span><a href="getting-started.html">Getting started →</a></div>
+  </main>
+</div>
+<footer><div class="row"><span>gitevolved — git, evolved. Apache-2.0.</span><span><a href="https://github.com/do-awesome-ai/gitevolved">github</a> · <a href="https://gitevolved.ai">gitevolved.ai</a></span></div></footer>
+</body></html>
